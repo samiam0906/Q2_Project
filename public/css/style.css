@@ -1,0 +1,68 @@
+html{
+  height: 100%;
+}
+body {
+  height: 100vh;
+  min-height: 100%;
+}
+
+.full-spectrum .sp-palette {
+max-width: 200px;
+}
+
+
+#blueDiv {
+  position: absolute;
+  top: 100px;
+  background-color: lightBlue;
+  width: 250px;
+  height: 250px;
+}
+
+#yellowDiv {
+  position: absolute;
+  top: 100px;
+  background-color: yellow;
+  width: 250px;
+  height: 250px;
+}
+
+#redDiv {
+  position: absolute;
+  top: 100px;
+  background-color: red;
+  width: 250px;
+  height: 250px;
+}
+
+#greenDiv {
+  position: absolute;
+  top: 100px;
+  background-color: green;
+  width: 250px;
+  height: 250px;
+}
+
+#purpleDiv {
+  position: absolute;
+  top: 100px;
+  background-color: purple;
+  width: 250px;
+  height: 250px;
+}
+
+#orangeDiv {
+  position: absolute;
+  top: 100px;
+  background-color: orange;
+  width: 250px;
+  height: 250px;
+}
+
+#pinkDiv {
+  position: absolute;
+  top: 100px;
+  background-color: pink;
+  width: 250px;
+  height: 250px;
+}

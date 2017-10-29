@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title></title>
+
+  <% include ../partials/head %>
+
+
+    <link href="https://cdn.rawgit.com/bgrins/spectrum/master/spectrum.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <% include ../partials/header %>
+  </header>
+
+  </div>
+
+  <main>
+
+    <h2>Basic Usage</h2>
+    <input type='text' class="basic" />
+    <em id='basic-log'></em>
+
+    <h2>Full Example</h2>
+    <input type='text' id="full" />
+
+    <%# <div id="blueDiv">%>
+
+    <%# <button onClick="blue()">
+        Change the color to blue
+      </button>
+
+    <button onClick="yellow()">
+        Change the color to yellow
+      </button>
+
+    <button onClick="red()">
+        Change the color to red
+      </button>
+
+    <button onClick="green()">
+        Change the color to green
+    </button>%>
+
+      <label>
+    <input id="myText" type="number" name="temp">
+    <input type="button" value="click me" onClick="changeColor();">
+    </label>
+
+  </main>
+
+
+
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <script src="https://cdn.rawgit.com/bgrins/spectrum/master/spectrum.js"></script>
+
+  <script type="text/javascript" src="js/color.js"></script>
+
+
+
+</body>
+
+</html>
