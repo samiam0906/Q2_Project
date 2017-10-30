@@ -29,10 +29,11 @@ router.get('/conditions', (req, res, next) => {
 })
 
 router.post('/conditions', (req, res, next) => {
-  request(url + 'GA' + '/' + 'Atlanta' + '.json', (error, response, body) => {
+  const{ city, state } = req.body;
+  request(url + state + '/' + city + '.json', (error, response, body) => {
     let resBody = JSON.parse(body);
     let cityTemp = Number.parseInt(resBody.current_observation.temp_f);
-    const{ city, state } = req.body;
+
     knex('locations')
     .insert({
       city: city,

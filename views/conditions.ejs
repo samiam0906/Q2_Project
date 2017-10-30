@@ -1,11 +1,28 @@
-<form action="/conditions" method="post">
-  <input type="text" name="city" placeholder="city">
-  <input type="text" name="state" placeholder="state">
-  <input type="submit">
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <form action="/conditions" method="post">
+      <input type="text" name="city" placeholder="city">
+      <input type="text" name="state" placeholder="state">
+      <input type="submit">
+    </form>
 
-<ul>
-  <% for (var i = 0; i < locations.length; i++) { %>
-    <li><%= locations[i].city %>, <%= locations[i].state %>, <%= locations[i].temp %></li>
-  <% } %>
-</ul>
+    <ul>
+      <% for (var i = 0; i < locations.length; i++) { %>
+        <li><%= locations[i].city %>, <%= locations[i].state %></li>
+        <li class="temp_condition" onload="changeColor()"><%= locations[i].temp %></li>
+      <% } %>
+    </ul>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script src="https://cdn.rawgit.com/bgrins/spectrum/master/spectrum.js"></script>
+
+    <script type="text/javascript" src="js/color.js"></script>
+  </body>
+</html>

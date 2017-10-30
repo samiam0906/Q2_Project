@@ -1,4 +1,4 @@
-let div = document.getElementById("blueDiv");
+let div = document.getElementsByClassName("temp_condition");
 
 function blue() {
   div.setAttribute('id', 'blueDiv');
@@ -25,7 +25,8 @@ function green() {
 // console.log(cityTemp);
 
 function changeColor() {
-  let cityTemp = document.getElementById("myText");
+  let cityTemp = document.getElementsByClassName(".temp_condition");
+  console.log(cityTemp)
 
   let numberTemp = Number.parseInt(cityTemp.value);
   console.log(numberTemp);
@@ -33,13 +34,13 @@ function changeColor() {
 
   switch (true) {
     case (numberTemp > 0 && numberTemp <= 32):
-      div.setAttribute('id', 'purpleDiv');
+      div.setAttribute('class', 'purpleDiv');
       break;
     case (numberTemp > 32 && numberTemp <= 65):
-      div.setAttribute('id', 'pinkDiv');
+      div.setAttribute('class', 'pinkDiv');
       break;
     case (numberTemp > 65):
-      div.setAttribute('id', 'orangeDiv');
+      div.setAttribute('class', 'orangeDiv');
       break;
     default:
       console.log("no temperature specified")
