@@ -9,12 +9,16 @@
 // });
 
 $(".colorPicker").spectrum({
-    color: "#ECC",
+    color: "#FFFFFF",
     showInput: true,
     className: "full-spectrum",
     showInitial: true,
     showPalette: true,
+    showPaletteOnly: true,
     showSelectionPalette: true,
+    togglePaletteOnly: true,
+    togglePaletteMoreText: 'more',
+    togglePaletteLessText: 'less',
     maxSelectionSize: 10,
     preferredFormat: "hex",
     localStorageKey: "spectrum.demo",

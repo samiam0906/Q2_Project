@@ -13,7 +13,7 @@ let url = apiWeather + apiKeyWeather + conditionsQuery;
 router.get('/', (req, res, next) => {
   knex('locations')
   .then(locations => {
-    res.render('conditions', {locations});
+    res.render('index', {locations});
   })
   .catch(err => {
     next(err);

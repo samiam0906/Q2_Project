@@ -15,10 +15,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 const conditions = require('./routes/conditions');
+app.use('/', conditions);
+
+const preferences = require('./routes/preferences');
+app.use('/', preferences);
 
 const queries = require('./db/queries');
 
-app.use('/', conditions);
 
 
 
