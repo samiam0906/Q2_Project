@@ -2,14 +2,34 @@
 
 module.exports = {
 
+  test: {
+    client: 'pg',
+    connection: 'postgres://localhost/weatherapp',
+    migrations: {
+      directory: __dirname + '/db/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds/test'
+    }
+  },
   development: {
     client: 'pg',
-    connection: 'posgres://localhost/weatherapp'
+    connection: 'postgres://localhost/weatherapp',
+    migrations: {
+      directory: __dirname + '/db/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds/development'
+    }
   },
-
   production: {
     client: 'pg',
-    connection: process.env.DATABASE_URL
+    connection: process.env.DATABASE_URL,
+    migrations: {
+      directory: __dirname + '/db/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds/production'
+    }
   }
-
 };

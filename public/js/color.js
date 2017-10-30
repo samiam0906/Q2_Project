@@ -46,12 +46,12 @@ function changeColor() {
   }
 }
 
-$(".basic").spectrum({
-    color: "#f00",
-    change: function(color) {
-        $("#basic-log").text("change called: " + color.toHexString());
-    }
-});
+// $(".basic").spectrum({
+//     color: "#f00",
+//     change: function(color) {
+//         $("#basic-log").text("change called: " + color.toHexString());
+//     }
+// });
 
 $("#full").spectrum({
     color: "#ECC",
