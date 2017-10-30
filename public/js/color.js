@@ -1,51 +1,33 @@
-let div = document.getElementsByClassName("temp_condition");
-
-function blue() {
-  div.setAttribute('id', 'blueDiv');
-}
-
-function yellow() {
-  div.setAttribute('id', 'yellowDiv');
-}
-
-function red() {
-  div.setAttribute('id', 'redDiv');
-}
-
-function green() {
-  div.setAttribute('id', 'greenDiv');
-}
-
-
-
 // ----------------------------------
 // Change color depending on temperature value
 
 // let cityTemp = document.querySelector('#tempForm');
 // console.log(cityTemp);
 
-function changeColor() {
-  let cityTemp = document.getElementsByClassName(".temp_condition");
-  console.log(cityTemp)
+let tempElements = document.getElementsByClassName('temp_condition');
+console.log(tempElements)
 
-  let numberTemp = Number.parseInt(cityTemp.value);
-  console.log(numberTemp);
-
+Array.prototype.forEach.call(tempElements, element => {
+  let tempValue = Number.parseInt(element.innerHTML);
+  console.log(tempValue);
 
   switch (true) {
-    case (numberTemp > 0 && numberTemp <= 32):
-      div.setAttribute('class', 'purpleDiv');
+    case (tempValue > 0 && tempValue <= 32):
+      element.style.backgroundColor = "red";
       break;
-    case (numberTemp > 32 && numberTemp <= 65):
-      div.setAttribute('class', 'pinkDiv');
+    case (tempValue > 32 && tempValue <= 65):
+      element.style.backgroundColor = "blue";
       break;
-    case (numberTemp > 65):
-      div.setAttribute('class', 'orangeDiv');
+    case (tempValue > 65):
+      element.style.backgroundColor = "green";
       break;
     default:
       console.log("no temperature specified")
   }
-}
+})
+
+// ----------------------------------
+// Create and insert color picker
 
 // $(".basic").spectrum({
 //     color: "#f00",
