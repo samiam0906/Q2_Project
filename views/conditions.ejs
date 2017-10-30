@@ -4,11 +4,12 @@
 <head>
   <meta charset="utf-8">
   <title></title>
+  <link href="https://cdn.rawgit.com/bgrins/spectrum/master/spectrum.css" rel="stylesheet" />
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-  <form action="/conditions" method="post">
+  <form action="/" method="post">
     <input type="text" name="city" placeholder="city">
     <input type="text" name="state" placeholder="state">
     <input type="submit">
@@ -16,20 +17,28 @@
 
   <table id="locationTemp">
     <tr>
+      <th>Choose Color</th>
       <th>City</th>
       <th>State</th>
       <th>Temperature</th>
+      <th>Weather</th>
     </tr>
     <% for (var i = 0; i < locations.length; i++) { %>
       <tr>
+        <td>
+          <input type='text' class="colorPicker" />
+        </td>
         <td>
           <%= locations[i].city %>
         </td>
         <td>
           <%= locations[i].state %>
         </td>
-        <td class="temp_condition">
+        <td class="tempCondition">
           <%= locations[i].temp %>
+        </td>
+        <td class="currentWeather">
+          <%= locations[i].weather %>
         </td>
       </tr>
       <% } %>

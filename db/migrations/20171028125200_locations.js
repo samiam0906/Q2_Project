@@ -4,7 +4,8 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('city').notNullable().defaultTo('');
     table.string('state').notNullable().defaultTo('');
-    table.integer('temp');
+    table.integer('temp').notNullable();
+    table.string('weather').notNullable();
   })
 };
 

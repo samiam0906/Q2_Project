@@ -1,32 +1,4 @@
 // ----------------------------------
-// Change color depending on temperature value
-
-// let cityTemp = document.querySelector('#tempForm');
-// console.log(cityTemp);
-
-let tempElements = document.getElementsByClassName('temp_condition');
-console.log(tempElements)
-
-Array.prototype.forEach.call(tempElements, element => {
-  let tempValue = Number.parseInt(element.innerHTML);
-  console.log(tempValue);
-
-  switch (true) {
-    case (tempValue > 0 && tempValue <= 32):
-      element.style.backgroundColor = "red";
-      break;
-    case (tempValue > 32 && tempValue <= 65):
-      element.style.backgroundColor = "blue";
-      break;
-    case (tempValue > 65):
-      element.style.backgroundColor = "green";
-      break;
-    default:
-      console.log("no temperature specified")
-  }
-})
-
-// ----------------------------------
 // Create and insert color picker
 
 // $(".basic").spectrum({
@@ -36,7 +8,7 @@ Array.prototype.forEach.call(tempElements, element => {
 //     }
 // });
 
-$("#full").spectrum({
+$(".colorPicker").spectrum({
     color: "#ECC",
     showInput: true,
     className: "full-spectrum",
@@ -58,7 +30,26 @@ $("#full").spectrum({
     hide: function () {
 
     },
-    change: function() {
+    change: function(color) {
+      let tempElements = document.getElementsByClassName('tempCondition');
+
+      Array.prototype.forEach.call(tempElements, element => {
+        let tempValue = Number.parseInt(element.innerHTML);
+
+        switch (true) {
+          case (tempValue > 0 && tempValue <= 32):
+            element.style.backgroundColor = color;
+            break;
+          case (tempValue > 32 && tempValue <= 65):
+            element.style.backgroundColor = color;
+            break;
+          case (tempValue > 65):
+            element.style.backgroundColor = color;
+            break;
+          default:
+            console.log("no temperature specified")
+        }
+      })
 
     },
     palette: [
@@ -80,22 +71,14 @@ $("#full").spectrum({
 });
 
 
-$('#full').on('change.spectrum', function(e, tinycolor) {
-  let colorSelection = $("#full").spectrum("get").toHex();
+$('.colorPicker').on('change.spectrum', function(e, tinycolor) {
+  let colorSelection = $(".colorPicker").spectrum("get").toHex();
   console.log(colorSelection);
 });
 
-// function myFunction() {
-//   let x = document.getElementById("myText");
-//   let numberX = Number.parseInt(x.value);
-//   console.log(typeof numberX);
-//   alert(x.value)
-//
-// }
-//
-// var output = document.querySelector("#output");
-//
-// var input = document.createElement("input");
-// input.setAttribute('type', 'text');
-// var parent = document.querySelector("body");
-// parent.appendChild(input);
+
+// ----------------------------------
+// Change color depending on temperature value
+
+// let cityTemp = document.querySelector('#tempForm');
+// console.log(cityTemp);
