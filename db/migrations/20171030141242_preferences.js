@@ -3,6 +3,8 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('preferences', table => {
     table.increments();
     table.time('alertTime');
+    table.string('latitude');
+    table.string('longitude');
     table.string('hotColor');
     table.string('coldColor');
   })
