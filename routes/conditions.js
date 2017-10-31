@@ -11,26 +11,27 @@ const conditionsQuery = '/conditions/q/';
 let url = apiWeather + apiKeyWeather + conditionsQuery;
 
 router.get('/', (req, res, next) => {
-  knex('locations')
-  .then(locations => {
-    res.render('index', {locations});
+  knex('weatherlog')
+  .then(weather => {
+    res.render('index', {weather});
   })
   .catch(err => {
     next(err);
   })
 })
 
-router.post('/', (req, res, next) => {
-  const{ city, state } = req.body;
-  request(url + state + '/' + city + '.json', (error, response, body) => {
+router.post('/', function(req,res,next){
+  const {lat, long} = req.body;
+  console.log("This is the lat: "+ lat);
+  request(url + lat + ',' + long + '.json', (error, response, body) => {
     let resBody = JSON.parse(body);
     let cityTemp = Number.parseInt(resBody.current_observation.temp_f);
     let currentWeather = resBody.current_observation.weather;
 
-    knex('locations')
+    knex('weatherlog')
     .insert({
-      city: city,
-      state: state,
+      lat: lat,
+      long: long,
       temp: cityTemp,
       weather: currentWeather
     })
@@ -39,6 +40,26 @@ router.post('/', (req, res, next) => {
     })
   })
 })
+
+// router.post('/', (req, res, next) => {
+//   const{ city, state } = req.body;
+//   request(url + state + '/' + city + '.json', (error, response, body) => {
+//     let resBody = JSON.parse(body);
+//     let cityTemp = Number.parseInt(resBody.current_observation.temp_f);
+//     let currentWeather = resBody.current_observation.weather;
+//
+//     knex('locations')
+//     .insert({
+//       city: city,
+//       state: state,
+//       temp: cityTemp,
+//       weather: currentWeather
+//     })
+//     .then(() => {
+//       res.redirect('/');
+//     })
+//   })
+// })
 
 
 

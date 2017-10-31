@@ -103,7 +103,7 @@ Array.prototype.forEach.call(tempElements, element => {
       element.style.backgroundColor = "#ff6600";
       break;
     default:
-      console.log("no temperature specified")
+      console.log("no temperature recorded")
   }
 })
 
@@ -123,6 +123,6 @@ Array.prototype.forEach.call(weatherElements, element => {
       element.style.backgroundColor = "grey";
       break;
     default:
-      console.log("no weather specified")
+      console.log("no weather recorded")
   }
 })

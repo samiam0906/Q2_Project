@@ -11,12 +11,17 @@
 <body>
   <p><button id="geolocation" onclick="geoFindMe()">Get my location</button></p>
   <div id="out"></div>
+  <form action='/' method="post">
+    <input type="text" id="lat" name="lat" placeholder="latitude">
+    <input type="text" id="long" name="long" placeholder="longitude">
+    <input type="submit">
+  </form>
 
-  <form action="/" method="post">
+  <%# <form action="/" method="post">
     <input type="text" name="city" placeholder="city">
     <input type="text" name="state" placeholder="state">
     <input type="submit">
-  </form>
+  </form>%>
 
   <p>Drag the slider to display the current value.</p>
   <div id="slidecontainer">
@@ -26,28 +31,25 @@
 
   <table id="locationTemp">
     <tr>
-      <th>Choose Color</th>
-      <th>City</th>
-      <th>State</th>
+      <!-- <th>Choose Color</th> -->
+      <th>Latitude</th>
+      <th>Longitude</th>
       <th>Temperature</th>
       <th>Weather</th>
     </tr>
-    <% for (var i = 0; i < locations.length; i++) { %>
+    <% for (var i = 0; i < weather.length; i++) { %>
       <tr>
         <td>
-          <input type='text' class="colorPicker" />
+          <%= weather[i].lat %>
         </td>
         <td>
-          <%= locations[i].city %>
-        </td>
-        <td>
-          <%= locations[i].state %>
+          <%= weather[i].long %>
         </td>
         <td class="tempCondition">
-          <%= locations[i].temp %>
+          <%= weather[i].temp %>
         </td>
         <td class="currentWeather">
-          <%= locations[i].weather %>
+          <%= weather[i].weather %>
         </td>
       </tr>
       <% } %>
@@ -68,3 +70,8 @@
 </body>
 
 </html>
+
+<%#
+<td>
+  <input type='text' class="colorPicker">
+</td>%>
