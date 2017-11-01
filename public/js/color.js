@@ -93,7 +93,7 @@ Array.prototype.forEach.call(tempElements, element => {
   let tempValue = Number.parseInt(element.innerHTML);
 
   switch (true) {
-    case (tempValue > 0 && tempValue <= 32):
+    case (tempValue <= 32):
       element.style.backgroundColor = "#1200ff";
       break;
     case (tempValue > 32 && tempValue <= 65):

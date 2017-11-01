@@ -95,7 +95,7 @@ api.searchForNewLights(function(err, result) {
 //     .then(displayResults)
 //     .done();
 
-// --------------------------
+
 // Using a callback
 api.newLights(function(err, result) {
     if (err) throw err;
@@ -112,7 +112,7 @@ api.newLights(function(err, result) {
 //   .then(displayResults)
 //   .done();
 
-// --------------------------
+
 // Using a callback
 api.schedules(function(err, result){
     if (err) throw err;
@@ -120,7 +120,7 @@ api.schedules(function(err, result){
 });
 
 
-
+// --------------------------
 // Obtain details of a schedule
 
 // Using a promise
@@ -128,7 +128,7 @@ api.schedules(function(err, result){
 //   .then(displayResults)
 //   .done();
 
-// --------------------------
+
 // Using a callback
 api.getSchedule(scheduleId, function(err, result){
     if (err) throw err;
@@ -151,13 +151,12 @@ scheduledEvent = {
     }
 };
 
-// --------------------------
 // Using a promise
 // api.scheduleEvent(scheduledEvent)
 //     .then(displayResults)
 //     .done();
 
-// --------------------------
+
 // Using a callback
 api.createSchedule(scheduledEvent, function(err, result){
     if (err) throw err;
@@ -170,12 +169,27 @@ api.createSchedule(scheduledEvent, function(err, result){
 // Set light state -- .white('warm white value', 'brightness %')
 var lightState = hue.lightState;
 
-state = lightState.create().on().white(900, 100).shortAlert().colorLoop().transitiontime(20).off();
+state = lightState.create().off().white(50, 100);
+
+// Set light states for different temperature conditions
+// coldState
+// mildState
+// hotState
+
+// Set light states for different temperature conditions
+// clearState
+// rainState
+// snowState
+// fogState
+// thunderstormState
+// cloudState
+// miscState
 
 // Using a promise -- set light state of light with id '5'
 // api.setLightState(5, state)
 //   .then(displayResult)
 //   .done();
+
 
 // Using a callback -- set light state of light with id '5'
 api.setLightState(5, state, function(err, lights) {
