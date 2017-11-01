@@ -1,5 +1,7 @@
 const hue = require('node-hue-api')
 const HueApi = require("node-hue-api").HueApi;
+const queries = require('../../db/queries');
+const knex = require('../../db/knex');
 
 let host = "192.168.0.3",
   username = "yFMjdOV63-MM9BDg8HE7abgaRa0J0nO3HsFxbtgX",
@@ -10,7 +12,7 @@ api = new HueApi(host, username);
 
 // --------------------------
 // API function that reveals the bridges on a network
-var displayBridges = function(bridge) {
+let displayBridges = function(bridge) {
   console.log("Hue Bridges Found: " + JSON.stringify(bridge));
 };
 
@@ -51,7 +53,7 @@ api.config(function(err, config) {
 
 // --------------------------
 // Find the lights attached to the bridge
-var displayResult = function(result) {
+let displayResult = function(result) {
   console.log(JSON.stringify(result, null, 2));
 };
 
@@ -70,7 +72,7 @@ api.lights(function(err, lights) {
 
 // --------------------------
 // Search for new lights
-var displayResults = function(result) {
+let displayResults = function(result) {
   console.log(JSON.stringify(result, null, 2));
 };
 
@@ -167,13 +169,42 @@ api.createSchedule(scheduledEvent, function(err, result){
 
 // --------------------------
 // Set light state -- .white('warm white value', 'brightness %')
-var lightState = hue.lightState;
+let lightState = hue.lightState;
 
 state = lightState.create().off().white(50, 100);
 
 // Set light states for different temperature conditions
 // coldState
-// mildState
+function getAllTemps() {
+  const id = event.target.id;
+  return knex('weatherlog').select('temp')
+  .where('user_id', id)
+  .pluck('temp')
+  .then(temps => {
+    let tempArr = Array.from(temps);
+    console.log(tempArr);
+  })
+}
+
+
+
+let mildTemps = [];
+
+function getMildTemps() {
+  return knex('weatherlog').select('temp')
+    .where('temp', '>', 32)
+    .andWhere('temp', '<=', 65)
+    .pluck('temp')
+    .then(temps => {
+      let mildTempArr = Array.from(temps);
+      for (var i = 0; i < mildTempArr.length; i++) {
+        mildTemps.push(mildTempArr[i]);
+      }
+      console.log(mildTemps);
+    })
+}
+
+let mildState = lightState.create().on().shortAlert().rgb(43, 255, 246).brightness(100);
 // hotState
 
 // Set light states for different temperature conditions

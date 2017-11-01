@@ -19,29 +19,24 @@ let coldTemps = knex('weatherlog').where('temp', '<=', 32);
 //   })
 
 
-function getMildTemps() {
-  return knex('weatherlog').select('temp')
-    .where('temp', '>', 32)
-    .andWhere('temp', '<=', 65)
-    .then(function(temps) {
-      // already returns an array you can do other things here
-      return temps;
-    })
-}
+// let mildTemps = [];
+//
+// function getMildTemps() {
+//   return knex('weatherlog').select('temp')
+//     .where('temp', '>', 32)
+//     .andWhere('temp', '<=', 65)
+//     .pluck('temp')
+//     .then(temps => {
+//       let mildTempArr = Array.from(temps);
+//       for (var i = 0; i < mildTempArr.length; i++) {
+//         mildTemps.push(mildTempArr[i]);
+//       }
+//       console.log(mildTemps);
+//     })
+// }
+//
+// getMildTemps();
 
-let mildTemps = [];
-
-getMildTemps()
-  .then(function(temps) {
-    // do what you need as well, like send to the frontend using express
-    console.log(temps)
-    for (var i = 0; i < temps.length; i++) {
-      for (var key in temps) {
-        console.log(temps[i].key)
-      }
-    }
-    
-  })
 
 
 let hotTemps = knex('weatherlog').where('temp', '>', 65);

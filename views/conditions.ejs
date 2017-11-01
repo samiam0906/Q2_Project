@@ -18,7 +18,12 @@
     <input type="text" id="long" name="long" placeholder="longitude">
     <input type="submit">
   </form>
+
   <br>
+
+  <input id="<%=user.id%>" type="button" name="Get Temperature Color" value="Get Temperature Color" onclick="getAllTemps()">
+
+  <br><br>
 
   <table id="locationTemp">
     <tr>
@@ -28,19 +33,20 @@
       <th>Temperature</th>
       <th>Weather</th>
     </tr>
-    <% for (var i = 0; i < weather.length; i++) { %>
+    <% if (weather.length > 0) { %>
+
       <tr>
         <td>
-          <%= weather[i].lat %>
+          <%= weather[weather.length - 1].lat %>
         </td>
         <td>
-          <%= weather[i].long %>
+          <%= weather[weather.length - 1].long %>
         </td>
         <td class="tempCondition">
-          <%= weather[i].temp %>
+          <%= weather[weather.length - 1].temp %>
         </td>
         <td class="currentWeather">
-          <%= weather[i].weather %>
+          <%= weather[weather.length - 1].weather %>
         </td>
       </tr>
       <% } %>
@@ -49,11 +55,11 @@
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-  <script src="https://cdn.rawgit.com/bgrins/spectrum/master/spectrum.js"></script>
-
   <script type="text/javascript" src="/js/color.js"></script>
 
   <script type="text/javascript" src="/js/getLocation.js"></script>
+
+  <script type="text/javascript" src="/js/hue.js"></script>
 
 </body>
 
@@ -63,3 +69,5 @@
 <td>
   <input type='text' class="colorPicker">
 </td>%>
+
+  <%# <script src="https://cdn.rawgit.com/bgrins/spectrum/master/spectrum.js"></script>%>
