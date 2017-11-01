@@ -110,17 +110,63 @@ Array.prototype.forEach.call(tempElements, element => {
 // ----------------------------------
 // Change color depending on weather conditions
 
+// Weather Underground Condition Phrases
+
+let clearConditions = [('Clear')];
+
+let rainConditions1 = ['Light Drizzle', 'Heavy Drizzle', 'Drizzle', 'Light Rain', 'Heavy Rain', 'Rain', 'Light Mist', 'Heavy Mist', 'Mist', 'Light Rain Mist', 'Heavy Rain Mist', 'Rain Mist', 'Light Rain Showers', 'Heavy Rain Showers', 'Rain Showers'];
+
+let rainConditions2 = ['Light Freezing Drizzle', 'Heavy Freezing Drizzle', 'Freezing Drizzle', 'Light Freezing Rain', 'Heavy Freezing Rain', 'Freezing Rain', 'Unknown Precipitation'];
+
+let snowConditions1 = ['Light Snow', 'Heavy Snow', 'Snow', 'Light Snow Grains', 'Heavy Snow Grains', 'Snow Grains', 'Light Ice Crystals', 'Heavy Ice Crystals', 'Ice Crystals', 'Light Ice Pellets', 'Heavy Ice Pellets', 'Ice Pellets', 'Light Hail', 'Heavy Hail', 'Hail', 'Light Snow Showers', 'Heavy Snow Showers', 'Snow Showers', 'Light Snow Blowing Snow Mist'];
+
+let snowConditions2 = ['Heavy Snow Blowing Snow Mist', 'Snow Blowing Snow Mist', 'Light Ice Pellet Showers', 'Heavy Ice Pellet Showers', 'Ice Pellet Showers', 'Light Hail Showers', 'Heavy Hail Showers', 'Hail Showers', 'Light Small Hail Showers', 'Heavy Small Hail Showers', 'Small Hail Showers', 'Light Blowing Snow', 'Heavy Blowing Snow', 'Blowing Snow', 'Light Low Drifting Snow', 'Heavy Low Drifting Snow', 'Low Drifting Snow', 'Small Hail'];
+
+let fogConditions = ['Light Fog', 'Heavy Fog', 'Fog', 'Light Fog Patches', 'Heavy Fog Patches', 'Fog Patches', 'Patches of Fog', 'Shallow Fog', 'Partial Fog', 'Light Freezing Fog', 'Heavy Freezing Fog', 'Freezing Fog'];
+
+let thunderstormConditions = ['Light Thunderstorm', 'Heavy Thunderstorm', 'Thunderstorm', 'Light Thunderstorms and Rain', 'Heavy Thunderstorms and Rain', 'Thunderstorms and Rain', 'Light Thunderstorms and Snow', 'Heavy Thunderstorms and Snow', 'Thunderstorms and Snow', 'Light Thunderstorms and Ice Pellets', 'Heavy Thunderstorms and Ice Pellets', 'Thunderstorms and Ice Pellets', 'Light Thunderstorms with Hail', 'Heavy Thunderstorms with Hail', 'Thunderstorms with Hail', 'Light Thunderstorms with Small Hail', 'Heavy Thunderstorms with Small Hail', 'Thunderstorms with Small Hail'];
+
+let CloudConditions = ['Overcast', 'Partly Cloudy', 'Mostly Cloudy', 'Scattered Clouds', 'Funnel Cloud'];
+
+let miscConditions1 = ['Light Smoke', 'Heavy Smoke', 'Smoke', 'Light Volcanic Ash', 'Heavy Volcanic Ash', 'Volcanic Ash', 'Light Widespread Dust', 'Heavy Widespread Dust', 'Widespread Dust', 'Light Sand', 'Heavy Sand', 'Sand', 'Light Haze', 'Heavy Haze', 'Haze', 'Light Spray', 'Heavy Spray', 'Spray', 'Light Dust Whirls'];
+
+let miscConditions2 = ['Heavy Dust Whirls', 'Dust Whirls', 'Light Sandstorm', 'Heavy Sandstorm', 'Sandstorm', 'Light Low Drifting Widespread Dust', 'Heavy Low Drifting Widespread Dust', 'Low Drifting Widespread Dust', 'Light Low Drifting Sand', 'Heavy Low Drifting Sand', 'Low Drifting Sand', 'Light Blowing Widespread Dust', 'Heavy Blowing Widespread Dust', 'Blowing Widespread Dust', 'Light Blowing Sand', 'Heavy Blowing Sand', 'Blowing Sand', 'Squalls', 'Unknown'];
+
 let weatherElements = document.getElementsByClassName('currentWeather');
 
 Array.prototype.forEach.call(weatherElements, element => {
   let weatherValue = element.innerText;
 
-  switch (weatherValue) {
-    case "Clear":
+  switch (true) {
+    case (clearConditions.indexOf(weatherValue) > -1):
       element.style.backgroundColor = "lightBlue";
       break;
-    case "Rain":
+    case (rainConditions1.indexOf(weatherValue) > -1):
       element.style.backgroundColor = "grey";
+      break;
+    case (rainConditions2.indexOf(weatherValue) > -1):
+      element.style.backgroundColor = "grey";
+      break;
+    case (snowConditions1.indexOf(weatherValue) > -1):
+      element.style.backgroundColor = "white";
+      break;
+    case (snowConditions2.indexOf(weatherValue) > -1):
+      element.style.backgroundColor = "white";
+      break;
+    case (fogConditions.indexOf(weatherValue) > -1):
+      element.style.backgroundColor = "silver";
+      break;
+    case (thunderstormConditions.indexOf(weatherValue) > -1):
+      element.style.backgroundColor = "yellow";
+      break;
+    case (cloudConditions.indexOf(weatherValue) > -1):
+      element.style.backgroundColor = "grey";
+      break;
+    case (miscConditions1.indexOf(weatherValue) > -1):
+      element.style.backgroundColor = "purple";
+      break;
+    case (miscConditions2.indexOf(weatherValue) > -1):
+      element.style.backgroundColor = "purple";
       break;
     default:
       console.log("no weather recorded")
