@@ -52,6 +52,8 @@ router.post('/users/:id/weather', function(req,res,next){
   })
 })
 
+// update weather instance
+
 
 
 module.exports = router;
