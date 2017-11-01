@@ -11,7 +11,7 @@ const conditionsQuery = '/conditions/q/';
 let url = apiWeather + apiKeyWeather + conditionsQuery;
 
 router.get('/users/:id', (req, res, next) => {
-  let id = req.params.id;
+  const id = req.params.id
   knex('users')
   .where('id', id)
   .first()
@@ -28,8 +28,8 @@ router.get('/users/:id', (req, res, next) => {
 })
 
 // create weather instance
-router.post('/users/:id', function(req,res,next){
-  let id = req.params.id;
+router.post('/users/:id/weather', function(req,res,next){
+  const id = req.params.id;
   const {lat, long} = req.body;
   console.log("This is the lat: "+ lat);
   console.log("This is the long: "+ long);
@@ -51,26 +51,6 @@ router.post('/users/:id', function(req,res,next){
     })
   })
 })
-
-// router.post('/', (req, res, next) => {
-//   const{ city, state } = req.body;
-//   request(url + state + '/' + city + '.json', (error, response, body) => {
-//     let resBody = JSON.parse(body);
-//     let cityTemp = Number.parseInt(resBody.current_observation.temp_f);
-//     let currentWeather = resBody.current_observation.weather;
-//
-//     knex('locations')
-//     .insert({
-//       city: city,
-//       state: state,
-//       temp: cityTemp,
-//       weather: currentWeather
-//     })
-//     .then(() => {
-//       res.redirect('/');
-//     })
-//   })
-// })
 
 
 

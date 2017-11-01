@@ -9,10 +9,11 @@
 </head>
 
 <body>
+  <h3>Welcome, <%= user.username %></h3>
 
   <p><button id="geolocation" onclick="geoFindMe()">Get my location</button></p>
   <div id="out"></div>
-  <form action='/users/<%user.id%>' method="post">
+  <form action="/users/<%=user.id%>/weather" method="post">
     <input type="text" id="lat" name="lat" placeholder="latitude">
     <input type="text" id="long" name="long" placeholder="longitude">
     <input type="submit">
