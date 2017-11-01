@@ -10,19 +10,29 @@ const conditionsQuery = '/conditions/q/';
 
 let url = apiWeather + apiKeyWeather + conditionsQuery;
 
-router.get('/', (req, res, next) => {
-  knex('weatherlog')
-  .then(weather => {
-    res.render('index', {weather});
+router.get('/users/:id', (req, res, next) => {
+  let id = req.params.id;
+  knex('users')
+  .where('id', id)
+  .first()
+  .then(user => {
+    knex('weatherlog')
+    .where('user_id', id)
+    .then(weather => {
+      res.render('conditions', {user, weather});
+    })
   })
   .catch(err => {
     next(err);
   })
 })
 
-router.post('/', function(req,res,next){
+// create weather instance
+router.post('/users/:id', function(req,res,next){
+  let id = req.params.id;
   const {lat, long} = req.body;
   console.log("This is the lat: "+ lat);
+  console.log("This is the long: "+ long);
   request(url + lat + ',' + long + '.json', (error, response, body) => {
     let resBody = JSON.parse(body);
     let cityTemp = Number.parseInt(resBody.current_observation.temp_f);
@@ -30,13 +40,14 @@ router.post('/', function(req,res,next){
 
     knex('weatherlog')
     .insert({
+      user_id: id,
       lat: lat,
       long: long,
       temp: cityTemp,
       weather: currentWeather
     })
     .then(() => {
-      res.redirect('/');
+      res.redirect('/users/' + id);
     })
   })
 })

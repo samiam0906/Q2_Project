@@ -5,7 +5,7 @@ const request = require('request');
 
 const knex = require('./db/knex');
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 const ejs = require('ejs');
 app.set('view engine', 'ejs');
@@ -17,14 +17,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 const conditions = require('./routes/conditions');
 app.use('/', conditions);
 
-const preferences = require('./routes/preferences');
-app.use('/', preferences);
-
+const users = require('./routes/users');
+app.use('/', users);
 
 
 const queries = require('./db/queries');
-
-
 
 
 app.listen(port, () => {

@@ -30,23 +30,6 @@ function geoFindMe() {
 
     output.appendChild(img);
 
-    // let geolocation = {
-    //   latitude: latitude,
-    //   longitude: longitude
-    // };
-    //
-    // console.log(geolocation);
-
-    // $.ajax({
-    //   type: 'POST',
-    //   url: 'http://api.wunderground.com/api/d8cca433e1c32193/conditions/q/' + latitude + ',' + longitude + '.json',
-    //   data: geolocation,
-    //   dataType: 'json',
-    //   contentType: 'application/json'
-    //   success: function(data) {
-    //
-    //   }
-    // })
   }
 
   function error() {

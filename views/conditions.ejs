@@ -3,25 +3,20 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Weather</title>
   <link href="https://cdn.rawgit.com/bgrins/spectrum/master/spectrum.css" rel="stylesheet" />
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+
   <p><button id="geolocation" onclick="geoFindMe()">Get my location</button></p>
   <div id="out"></div>
-  <form action='/' method="post">
+  <form action='/users/<%user.id%>' method="post">
     <input type="text" id="lat" name="lat" placeholder="latitude">
     <input type="text" id="long" name="long" placeholder="longitude">
     <input type="submit">
   </form>
-
-  <%# <form action="/" method="post">
-    <input type="text" name="city" placeholder="city">
-    <input type="text" name="state" placeholder="state">
-    <input type="submit">
-  </form>%>
 
   <p>Drag the slider to display the current value.</p>
   <div id="slidecontainer">
@@ -56,17 +51,16 @@
 
   </table>
 
-
-
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
   <script src="https://cdn.rawgit.com/bgrins/spectrum/master/spectrum.js"></script>
 
-  <script type="text/javascript" src="js/color.js"></script>
+  <script type="text/javascript" src="/js/color.js"></script>
 
-  <script type="text/javascript" src="js/preferences.js"></script>
+  <script type="text/javascript" src="/js/getLocation.js"></script>
 
-  <script type="text/javascript" src="js/getLocation.js"></script>
+  <script type="text/javascript" src="/js/preferences.js"></script>
+
 </body>
 
 </html>
