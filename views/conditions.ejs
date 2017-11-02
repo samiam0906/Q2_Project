@@ -9,6 +9,8 @@
 </head>
 
 <body>
+
+  <h5><a href="/users">All Users</a></h5>
   <h3>Welcome, <%= user.username %></h3>
 
   <p><button id="geolocation" onclick="geoFindMe()">Get my location</button></p>
@@ -21,7 +23,10 @@
 
   <br>
 
-  <input id="<%=user.id%>" type="button" name="Get Temperature Color" value="Get Temperature Color" onclick="getAllTemps()">
+<!-- routing to link hue up with front end -->
+  <form class="lights" action="/users/<%=user.id%>/color" method="get">
+    <input id="<%=user.id%>" type="submit" value="Get Temperature Color">
+  </form>
 
   <br><br>
 
@@ -34,19 +39,20 @@
       <th>Weather</th>
     </tr>
     <% if (weather.length > 0) { %>
+      <% let current = weather.length -1 %>
 
       <tr>
         <td>
-          <%= weather[weather.length - 1].lat %>
+          <%= weather[current].lat %>
         </td>
         <td>
-          <%= weather[weather.length - 1].long %>
+          <%= weather[current].long %>
         </td>
         <td class="tempCondition">
-          <%= weather[weather.length - 1].temp %>
+          <%= weather[current].temp %>
         </td>
         <td class="currentWeather">
-          <%= weather[weather.length - 1].weather %>
+          <%= weather[current].weather %>
         </td>
       </tr>
       <% } %>
@@ -58,8 +64,6 @@
   <script type="text/javascript" src="/js/color.js"></script>
 
   <script type="text/javascript" src="/js/getLocation.js"></script>
-
-  <script type="text/javascript" src="/js/hue.js"></script>
 
 </body>
 
