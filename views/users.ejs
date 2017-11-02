@@ -15,37 +15,42 @@
 </head>
 
 <body>
+  <main>
+    <div class="container">
 
-  <h3>All Users</h3>
 
-  <ul>
-    <% for (var i=0; i < users.length; i++) {%>
-      <li>
-        <a href="/users/<%=users[i].id%>">
-          <%=users[i].username%>
-        </a>
-      </li>
-      <%}%>
-  </ul>
+      <h3>All Users</h3>
 
-  <h3>Add a User</h3>
+      <ul>
+        <% for (var i=0; i < users.length; i++) {%>
+          <li>
+            <a href="/users/<%=users[i].id%>">
+              <%=users[i].username%>
+            </a>
+          </li>
+          <%}%>
+      </ul>
 
-  <form action="/users" method="post">
-    <input type="text" name="username" placeholder="username">
-    <input type="submit">
-  </form>
+      <h3>Add a User</h3>
+
+      <form action="/users" method="post">
+        <input type="text" name="username" placeholder="username">
+        <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Submit</button>
+      </form>
+    </div>
+  </main>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
   <%# <script type="text/javascript" src="/jquery-3.2.1.js"></script>%>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-  <%# <script type="text/javascript" src="js/materialize.min.js"></script>%>
+    <%# <script type="text/javascript" src="js/materialize.min.js"></script>%>
 
-  <script type="text/javascript" src="/js/color.js"></script>
+      <script type="text/javascript" src="/js/color.js"></script>
 
-  <script type="text/javascript" src="/js/getLocation.js"></script>
+      <script type="text/javascript" src="/js/getLocation.js"></script>
 
 </body>
 

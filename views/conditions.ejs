@@ -42,7 +42,7 @@
       <div class="row">
         <div class="col s5">
           <form action="/users/<%=user.id%>/weather" method="post">
-            <div class="row">
+            
               <div class="input-field">
                 <input type="text" id="lat" name="lat" placeholder="Latitude">
               </div>
@@ -52,11 +52,11 @@
               </div>
 
               <div class="input-field">
-                <button class="small btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Submit
-            <i class="material-icons right">send</i>
+                <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Submit
+
           </button>
               </div>
-            </div>
+
           </form>
 
 
@@ -378,7 +378,6 @@
 
             <div class="input-field">
               <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Submit
-            <i class="material-icons right">send</i>
           </button>
             </div>
 
@@ -439,7 +438,6 @@
           <form action="/users/<%=user.id%>/huetemp" method="get">
             <div class="input-field">
               <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Get Temperature Color
-            <i class="material-icons right"></i>
           </button>
             </div>
           </form>
@@ -448,7 +446,6 @@
           <form action="/users/<%=user.id%>/hueweather" method="get">
             <div class="input-field">
               <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Get Weather
-            <i class="material-icons right"></i>
           </button>
             </div>
           </form>
