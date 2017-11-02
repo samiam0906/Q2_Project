@@ -27,7 +27,7 @@ router.get('/users/:id', (req, res, next) => {
   })
 })
 
-// create weather instance
+// create weather instance based on lat and long
 router.post('/users/:id/weather', function(req,res,next){
   const id = req.params.id;
   const {lat, long} = req.body;
@@ -43,6 +43,32 @@ router.post('/users/:id/weather', function(req,res,next){
       user_id: id,
       lat: lat,
       long: long,
+      temp: cityTemp,
+      weather: currentWeather
+    })
+    .then(() => {
+      res.redirect('/users/' + id);
+    })
+  })
+})
+
+
+// create weather instance based on entered location
+router.post('/users/:id/location', function(req,res,next){
+  const id = req.params.id;
+  const {city, state} = req.body;
+
+
+  request(url + state + '/' + city + '.json', (error, response, body) => {
+    let resBody = JSON.parse(body);
+    let cityTemp = Number.parseInt(resBody.current_observation.temp_f);
+    let currentWeather = resBody.current_observation.weather;
+
+    knex('weatherlog')
+    .insert({
+      user_id: id,
+      city: city,
+      state: state,
       temp: cityTemp,
       weather: currentWeather
     })

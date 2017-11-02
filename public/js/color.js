@@ -1,3 +1,8 @@
+$(document).ready(function() {
+  $('select').material_select();
+});
+
+
 // // ----------------------------------
 // // Create and insert color picker
 //

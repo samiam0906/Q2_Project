@@ -4,6 +4,8 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.decimal('lat', 10, 7);
     table.decimal('long', 10, 7);
+    table.string('city');
+    table.string('state');
     table.integer('temp');
     table.string('weather');
     table

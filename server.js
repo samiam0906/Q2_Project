@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({
 
 // --------------------------
 
-let host = "192.168.0.7",
+let host = "192.168.0.3",
   username = "yFMjdOV63-MM9BDg8HE7abgaRa0J0nO3HsFxbtgX",
   api,
   scheduleId; // need the scheduleId to create a new light schedule
@@ -146,7 +146,7 @@ let lightState = hue.lightState;
 let tempState;
 
 let coldState = lightState.create().on().shortAlert().rgb(26, 26, 255);
-let mildState = lightState.create().on().shortAlert().rgb(43, 255, 246).brightness(100);
+let mildState = lightState.create().on().shortAlert().rgb(255, 0, 0).brightness(100);
 let hotState = lightState.create().on().shortAlert().rgb(255, 67, 30);
 
 
