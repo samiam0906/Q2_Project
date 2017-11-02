@@ -1,8 +1,23 @@
 body {
+  display: flex;
   min-height: 100vh;
+  flex-direction: column;
   box-sizing: border-box;
 }
 
-.getLocation {
-  
+main {
+    flex: 1 0 auto;
+}
+
+#welcomeMsg {
+  padding: 20px 0 0 0;
+  font-size: 20px;
+}
+
+div #geoLocation {
+  max-width: 50%;
+}
+
+#geoLocation {
+  font-size: .75rem;
 }

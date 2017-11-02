@@ -23,7 +23,12 @@ router.post('/users', (req, res, next) => {
     username: username
   })
   .then(() => {
-    res.redirect('/users')
+    knex('users')
+    .where('username', username)
+    .first()
+    .then((user) => {
+      res.redirect('/users/' + user.id)
+    })
   })
 })
 
