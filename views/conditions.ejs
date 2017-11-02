@@ -23,10 +23,15 @@
 
   <br>
 
-<!-- routing to link hue up with front end -->
-  <form class="lights" action="/users/<%=user.id%>/color" method="get">
-    <input id="<%=user.id%>" type="submit" value="Get Temperature Color">
+<!-- routing to link hue up based on temperature -->
+  <form class="lights" action="/users/<%=user.id%>/huetemp" method="get">
+    <input type="submit" value="Get Temperature Color">
   </form>
+
+  <!-- routing to link hue up based on weather -->
+    <form class="lights" action="/users/<%=user.id%>/hueweather" method="get">
+      <input type="submit" value="Get Weather Color">
+    </form>
 
   <br><br>
 

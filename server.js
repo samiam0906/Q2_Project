@@ -136,12 +136,10 @@ api.createSchedule(scheduledEvent, function(err, result) {
   displayResults(result);
 });
 
-let weatherVal = "thunderstorm";
 
 // --------------------------
 // Set light state -- .white('warm white value', 'brightness %')
 let lightState = hue.lightState;
-
 
 
 // Set light states for different temperature conditions
@@ -155,7 +153,7 @@ let hotState = lightState.create().on().shortAlert().rgb(255, 67, 30);
 // Set light states for different temperature conditions
 let weatherState;
 
-let clearState =  lightState.create().on().shortAlert().rgb(213, 251, 255);
+let clearState = lightState.create().on().shortAlert().rgb(213, 251, 255);
 let rainState = lightState.create().on().shortAlert().rgb(71, 95, 118);
 let snowState = lightState.create().on().shortAlert().rgb(239, 244, 255);
 let fogState = lightState.create().on().shortAlert().rgb(162, 166, 173);
@@ -163,13 +161,27 @@ let thunderstormState = lightState.create().on().shortAlert().rgb(242, 212, 72);
 let cloudState = lightState.create().on().shortAlert().rgb(164, 164, 193);
 let miscState = lightState.create().on().shortAlert().rgb(204, 45, 235);
 
-if (weatherVal === "clear") {
-  weatherState = clearState;
-}
+// Weather Underground Condition Phrases
 
-if (weatherVal === "thunderstorm") {
-  weatherState = thunderstormState;
-}
+let clearConditions = [('Clear')];
+
+let rainConditions1 = ['Light Drizzle', 'Heavy Drizzle', 'Drizzle', 'Light Rain', 'Heavy Rain', 'Rain', 'Light Mist', 'Heavy Mist', 'Mist', 'Light Rain Mist', 'Heavy Rain Mist', 'Rain Mist', 'Light Rain Showers', 'Heavy Rain Showers', 'Rain Showers'];
+
+let rainConditions2 = ['Light Freezing Drizzle', 'Heavy Freezing Drizzle', 'Freezing Drizzle', 'Light Freezing Rain', 'Heavy Freezing Rain', 'Freezing Rain', 'Unknown Precipitation'];
+
+let snowConditions1 = ['Light Snow', 'Heavy Snow', 'Snow', 'Light Snow Grains', 'Heavy Snow Grains', 'Snow Grains', 'Light Ice Crystals', 'Heavy Ice Crystals', 'Ice Crystals', 'Light Ice Pellets', 'Heavy Ice Pellets', 'Ice Pellets', 'Light Hail', 'Heavy Hail', 'Hail', 'Light Snow Showers', 'Heavy Snow Showers', 'Snow Showers', 'Light Snow Blowing Snow Mist'];
+
+let snowConditions2 = ['Heavy Snow Blowing Snow Mist', 'Snow Blowing Snow Mist', 'Light Ice Pellet Showers', 'Heavy Ice Pellet Showers', 'Ice Pellet Showers', 'Light Hail Showers', 'Heavy Hail Showers', 'Hail Showers', 'Light Small Hail Showers', 'Heavy Small Hail Showers', 'Small Hail Showers', 'Light Blowing Snow', 'Heavy Blowing Snow', 'Blowing Snow', 'Light Low Drifting Snow', 'Heavy Low Drifting Snow', 'Low Drifting Snow', 'Small Hail'];
+
+let fogConditions = ['Light Fog', 'Heavy Fog', 'Fog', 'Light Fog Patches', 'Heavy Fog Patches', 'Fog Patches', 'Patches of Fog', 'Shallow Fog', 'Partial Fog', 'Light Freezing Fog', 'Heavy Freezing Fog', 'Freezing Fog'];
+
+let thunderstormConditions = ['Light Thunderstorm', 'Heavy Thunderstorm', 'Thunderstorm', 'Light Thunderstorms and Rain', 'Heavy Thunderstorms and Rain', 'Thunderstorms and Rain', 'Light Thunderstorms and Snow', 'Heavy Thunderstorms and Snow', 'Thunderstorms and Snow', 'Light Thunderstorms and Ice Pellets', 'Heavy Thunderstorms and Ice Pellets', 'Thunderstorms and Ice Pellets', 'Light Thunderstorms with Hail', 'Heavy Thunderstorms with Hail', 'Thunderstorms with Hail', 'Light Thunderstorms with Small Hail', 'Heavy Thunderstorms with Small Hail', 'Thunderstorms with Small Hail'];
+
+let cloudConditions = ['Overcast', 'Partly Cloudy', 'Mostly Cloudy', 'Scattered Clouds', 'Funnel Cloud'];
+
+let miscConditions1 = ['Light Smoke', 'Heavy Smoke', 'Smoke', 'Light Volcanic Ash', 'Heavy Volcanic Ash', 'Volcanic Ash', 'Light Widespread Dust', 'Heavy Widespread Dust', 'Widespread Dust', 'Light Sand', 'Heavy Sand', 'Sand', 'Light Haze', 'Heavy Haze', 'Haze', 'Light Spray', 'Heavy Spray', 'Spray', 'Light Dust Whirls'];
+
+let miscConditions2 = ['Heavy Dust Whirls', 'Dust Whirls', 'Light Sandstorm', 'Heavy Sandstorm', 'Sandstorm', 'Light Low Drifting Widespread Dust', 'Heavy Low Drifting Widespread Dust', 'Low Drifting Widespread Dust', 'Light Low Drifting Sand', 'Heavy Low Drifting Sand', 'Low Drifting Sand', 'Light Blowing Widespread Dust', 'Heavy Blowing Widespread Dust', 'Blowing Widespread Dust', 'Light Blowing Sand', 'Heavy Blowing Sand', 'Blowing Sand', 'Squalls', 'Unknown'];
 
 
 // Turn light off
@@ -191,9 +203,9 @@ if (weatherVal === "thunderstorm") {
 
 
 //---------------------------------------
+// Change hue light color based on temperature
 
-
-app.get('/users/:id/color', (req, res, next) => {
+app.get('/users/:id/huetemp', (req, res, next) => {
   const id = req.params.id;
   knex('weatherlog')
     .where('user_id', id)
@@ -201,18 +213,6 @@ app.get('/users/:id/color', (req, res, next) => {
       let lastIndex = data.length - 1;
       console.log('TEMPERATURE IS: ' + data[lastIndex].temp);
       let tempVal = Number.parseInt(data[lastIndex].temp);
-      // if (tempVal < 32) {
-      //   tempState = coldState;
-      // }
-      //
-      // if (tempVal > 32 && tempVal <= 65) {
-      //   tempState = mildState;
-      //   console.log('mild');
-      // }
-      //
-      // if (tempVal > 65) {
-      //   tempState = hotState;
-      // }
 
       switch (true) {
         case (tempVal <= 32):
@@ -248,6 +248,70 @@ app.get('/users/:id/color', (req, res, next) => {
 })
 
 
+//---------------------------------------
+// Change hue light color based on weather
+
+app.get('/users/:id/hueweather', (req, res, next) => {
+  const id = req.params.id;
+  knex('weatherlog')
+    .where('user_id', id)
+    .then(data => {
+      let lastIndex = data.length - 1;
+      console.log('WEATHER IS: ' + data[lastIndex].weather);
+      let weatherVal = data[lastIndex].weather;
+
+      switch (true) {
+        case (clearConditions.indexOf(weatherVal) > -1):
+          weatherState = clearState;
+          break;
+        case (rainConditions1.indexOf(weatherVal) > -1):
+          weatherState = rainState;
+          break;
+        case (rainConditions2.indexOf(weatherVal) > -1):
+          weatherState = rainState;
+          break;
+        case (snowConditions1.indexOf(weatherVal) > -1):
+          weatherState = snowState;
+          break;
+        case (snowConditions2.indexOf(weatherVal) > -1):
+          weatherState = snowState;
+          break;
+        case (fogConditions.indexOf(weatherVal) > -1):
+          weatherState = fogState;
+          break;
+        case (thunderstormConditions.indexOf(weatherVal) > -1):
+          weatherState = thunderstormState;
+          break;
+        case (cloudConditions.indexOf(weatherVal) > -1):
+          weatherState = cloudState;
+          break;
+        case (miscConditions1.indexOf(weatherVal) > -1):
+          weatherState = miscState;
+          break;
+        case (miscConditions2.indexOf(weatherVal) > -1):
+          weatherState = miscState;
+          break;
+        default:
+          console.log("no weather recorded")
+      }
+
+      // Using a callback -- set light state of light with id '5'
+      api.setLightState(5, weatherState, function(err, lights) {
+        console.log('LIGHTS PLEASE')
+        if (err) throw err;
+        displayResult(lights);
+      })
+
+    })
+    .then(() => {
+      res.redirect('/users/' + id)
+    })
+    .catch(err => {
+      next(err);
+    })
+})
+
+
 
 
 const conditions = require('./routes/conditions');
@@ -255,9 +319,6 @@ app.use('/', conditions);
 
 const users = require('./routes/users');
 app.use('/', users);
-
-const lights = require('./routes/lights');
-app.use('/', lights);
 
 const queries = require('./db/queries');
 

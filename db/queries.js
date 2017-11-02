@@ -1,6 +1,5 @@
 const knex = require('./knex');
-const request = require('request');
-const hue = require('../public/js/hue');
+const request = require('request')
 
 const apiWeather = 'http://api.wunderground.com/api/';
 const apiKeyWeather = 'd8cca433e1c32193';
@@ -8,7 +7,7 @@ const conditionsQuery = '/conditions/q/';
 
 let url = apiWeather + apiKeyWeather + conditionsQuery;
 
-let coldTemps = knex('weatherlog').where('temp', '<=', 32);
+// let coldTemps = knex('weatherlog').where('temp', '<=', 32);
 // console.log(coldTemps);
 //
 // let mildTemps = knex('weatherlog')
