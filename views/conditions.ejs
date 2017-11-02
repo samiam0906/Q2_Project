@@ -33,132 +33,125 @@
 
       <br>
 
-      <div class="row col s3">
+      <div class="row">
         <a id="geolocation" class="waves-effect waves-light btn cyan lighten-3" onclick="geoFindMe()">Get my location</a>
       </div>
 
       <div id="out"></div>
 
-      <div class="row col s6">
-        <form action="/users/<%=user.id%>/weather" method="post">
-          <div class="row">
-            <div class="input-field col s3">
-              <input type="text" id="lat" name="lat" placeholder="Latitude">
-            </div>
+      <div class="row">
+        <div class="col s5">
+          <form action="/users/<%=user.id%>/weather" method="post">
+            <div class="row">
+              <div class="input-field">
+                <input type="text" id="lat" name="lat" placeholder="Latitude">
+              </div>
 
-            <div class="input-field col s3">
-              <input type="text" id="long" name="long" placeholder="Longitude">
-            </div>
+              <div class="input-field">
+                <input type="text" id="long" name="long" placeholder="Longitude">
+              </div>
 
-            <div class="input-field col s4">
-              <button class="small btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Submit
+              <div class="input-field">
+                <button class="small btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Submit
             <i class="material-icons right">send</i>
           </button>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
+          </form>
 
-      <div class="row">
-        <form class="col s6" action="/users/<%=user.id%>/location" method="post">
-          <div class="row">
-            <div class="input-field col s3">
-              <input type="text" id="city" name="city" placeholder="City">
-            </div>
 
-            <%# <div class="input-field col s3">
-            <input type="text" id="state" name="state" placeholder="State / Country">
-          </div>%>
+          <form action="/users/<%=user.id%>/location" method="post">
 
-              <div class="input-field col s6">
-                <select id="state" name="state">
+              <div class="input-field">
+                <input type="text" id="city" name="city" placeholder="City">
+              </div>
+
+                <div class="input-field">
+                  <select id="state" name="state">
             <option value="state" disabled selected>State / Country</option>
             <option value="NY">NY</option>
             <option value="2">Option 2</option>
             <option value="3">Option 3</option>
           </select>
-                <label>Please select an option</label>
-              </div>
+                  <label>Please select an option</label>
+                </div>
 
-              <div class="input-field col s4">
-                <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Submit
+                <div class="input-field">
+                  <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Submit
             <i class="material-icons right">send</i>
           </button>
-              </div>
+                </div>
+
+          </form>
+        </div>
+
+        <div class="col s6 offset-s1">
+
+          <div class="card">
+
+            <table id="locationTemp" class="centered col s4">
+              <thead>
+                <tr>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                  <th>City</th>
+                  <th>State / Country</th>
+                  <th>Temperature</th>
+                  <th>Weather</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% if (weather.length > 0) { %>
+                  <% let current = weather.length -1 %>
+                    <tr>
+                      <td>
+                        <%= weather[current].lat %>
+                      </td>
+                      <td>
+                        <%= weather[current].long %>
+                      </td>
+                      <td>
+                        <%= weather[current].city %>
+                      </td>
+                      <td>
+                        <%= weather[current].state %>
+                      </td>
+                      <td class="tempCondition">
+                        <%= weather[current].temp %>
+                      </td>
+                      <td class="currentWeather">
+                        <%= weather[current].weather %>
+                      </td>
+                    </tr>
+                    <% } %>
+              </tbody>
+            </table>
+
           </div>
-        </form>
-      </div>
+        </div>
 
-      <br>
+        <br><br>
 
-      <div class="row getLights">
+        <div class="row getLights col s6 offset-s1">
 
-        <!-- routing to link hue up based on temperature -->
-        <form class="col s4" action="/users/<%=user.id%>/huetemp" method="get">
-          <div class="input-field">
-            <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Get Temperature Color
-          <i class="material-icons right"></i>
-        </button>
-          </div>
-        </form>
+          <!-- routing to link hue up based on temperature -->
+          <form action="/users/<%=user.id%>/huetemp" method="get">
+            <div class="input-field">
+              <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Get Temperature Color
+            <i class="material-icons right"></i>
+          </button>
+            </div>
+          </form>
 
-        <!-- routing to link hue up based on weather -->
-        <form class="col s4" action="/users/<%=user.id%>/hueweather" method="get">
-          <div class="input-field">
-            <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Get Weather
-          <i class="material-icons right"></i>
-        </button>
-          </div>
-        </form>
-
-      </div>
-
-
-      <br>
-
-      <div class="row col s6">
-
-        <div class="card">
-
-          <table id="locationTemp" class="centered col s4">
-            <thead>
-              <tr>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>City</th>
-                <th>State / Country</th>
-                <th>Temperature</th>
-                <th>Weather</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% if (weather.length > 0) { %>
-                <% let current = weather.length -1 %>
-                  <tr>
-                    <td>
-                      <%= weather[current].lat %>
-                    </td>
-                    <td>
-                      <%= weather[current].long %>
-                    </td>
-                    <td>
-                      <%= weather[current].city %>
-                    </td>
-                    <td>
-                      <%= weather[current].state %>
-                    </td>
-                    <td class="tempCondition">
-                      <%= weather[current].temp %>
-                    </td>
-                    <td class="currentWeather">
-                      <%= weather[current].weather %>
-                    </td>
-                  </tr>
-                  <% } %>
-            </tbody>
-          </table>
-
+          <!-- routing to link hue up based on weather -->
+          <form action="/users/<%=user.id%>/hueweather" method="get">
+            <div class="input-field">
+              <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Get Weather
+            <i class="material-icons right"></i>
+          </button>
+            </div>
+          </form>
         </div>
       </div>
 
