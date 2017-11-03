@@ -145,20 +145,30 @@ let lightState = hue.lightState;
 // Set light states for different temperature conditions
 let tempState;
 
+//blue
 let coldState = lightState.create().on().shortAlert().rgb(26, 26, 255);
-let mildState = lightState.create().on().shortAlert().rgb(255, 0, 0).brightness(100);
+//cyan-blue
+let mildState = lightState.create().on().shortAlert().rgb(43, 255, 246).brightness(100);
+//orange-red
 let hotState = lightState.create().on().shortAlert().rgb(255, 67, 30);
 
 
 // Set light states for different temperature conditions
 let weatherState;
 
+//light blue
 let clearState = lightState.create().on().shortAlert().rgb(213, 251, 255);
+//grey blue
 let rainState = lightState.create().on().shortAlert().rgb(71, 95, 118);
+//white
 let snowState = lightState.create().on().shortAlert().rgb(239, 244, 255);
+//grey
 let fogState = lightState.create().on().shortAlert().rgb(162, 166, 173);
+//yellow
 let thunderstormState = lightState.create().on().shortAlert().rgb(242, 212, 72);
-let cloudState = lightState.create().on().shortAlert().rgb(164, 164, 193);
+//teal grey
+let cloudState = lightState.create().on().shortAlert().rgb(164, 193, 191);
+//purple
 let miscState = lightState.create().on().shortAlert().rgb(204, 45, 235);
 
 // Weather Underground Condition Phrases

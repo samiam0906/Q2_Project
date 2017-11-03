@@ -11,19 +11,22 @@
 
   <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css" media="screen,projection" />
 
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-
-  <nav>
-    <div class="nav-wrapper white">
-      <a href="#" class="brand-logo grey-text text-darken-2">Logo</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a class="grey-text text-darken-2" href="/users">All Users</a></li>
-      </ul>
-    </div>
-  </nav>
+  <header>
+    <nav>
+      <div class="nav-wrapper white">
+        <a href="#" class="brand-logo grey-text text-darken-2"><b>LightFeedback</b></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a class="grey-text text-darken-2" href="/users">Users</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
   <main class="grey lighten-4 grey-text text-darken-1">
     <div class="container">
@@ -42,20 +45,20 @@
       <div class="row">
         <div class="col s5">
           <form action="/users/<%=user.id%>/weather" method="post">
-            
-              <div class="input-field">
-                <input type="text" id="lat" name="lat" placeholder="Latitude">
-              </div>
 
-              <div class="input-field">
-                <input type="text" id="long" name="long" placeholder="Longitude">
-              </div>
+            <div class="input-field">
+              <input type="text" id="lat" name="lat" placeholder="Latitude">
+            </div>
 
-              <div class="input-field">
-                <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Submit
+            <div class="input-field">
+              <input type="text" id="long" name="long" placeholder="Longitude">
+            </div>
+
+            <div class="input-field">
+              <button class="btn waves-effect waves-light cyan lighten-3" type="submit" name="action">Submit
 
           </button>
-              </div>
+            </div>
 
           </form>
 
@@ -456,7 +459,7 @@
   </main>
 
   <footer class="page-footer blue-grey lighten-3">
-    <div class="container">
+    <%# <div class="container">
       <div class="row">
         <div class="col l6 s12">
           <h5 class="grey-text text-darken-1">Footer Content</h5>
@@ -472,11 +475,11 @@
           </ul>
         </div>
       </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-        © 2014 Copyright Text
-        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    </div>%>
+    <div class="footer-copyright blue-grey lighten-3">
+      <div>
+        © 2017 Sam Hoffman
+        <a class="grey-text text-lighten-4 right" href="#!"></a>
       </div>
     </div>
   </footer>
@@ -496,10 +499,3 @@
 </body>
 
 </html>
-
-<%#
-<td>
-  <input type='text' class="colorPicker">
-</td>%>
-
-  <%# <script src="https://cdn.rawgit.com/bgrins/spectrum/master/spectrum.js"></script>%>

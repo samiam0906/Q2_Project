@@ -146,7 +146,7 @@ let rainColor = "rgb(71, 95, 118)";
 let snowColor = "rgb(239, 244, 255)";
 let fogColor = "rgb(162, 166, 173)";
 let thunderstormColor = "rgb(242, 212, 72)";
-let cloudColor = "rgb(164, 164, 193)";
+let cloudColor = "rgb(164, 193, 191)";
 let miscColor = "rgb(204, 45, 235)";
 
 let weatherElements = document.getElementsByClassName('currentWeather');
